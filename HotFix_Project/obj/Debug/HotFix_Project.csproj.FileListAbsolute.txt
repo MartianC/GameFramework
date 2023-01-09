@@ -1,0 +1,16 @@
+E:\Project_Unity\ILRuntimeTest\Assets\StreamingAssets\HotFix_Project.dll
+E:\Project_Unity\ILRuntimeTest\Assets\StreamingAssets\HotFix_Project.pdb
+E:\Project_Unity\ILRuntimeTest\Assets\ThirdPartTools\ILRuntime\2.1.0\Demo\HotFix_Project~\obj\Debug\HotFix_Project.csproj.AssemblyReference.cache
+E:\Project_Unity\ILRuntimeTest\Assets\ThirdPartTools\ILRuntime\2.1.0\Demo\HotFix_Project~\obj\Debug\HotFix_Project.csproj.CoreCompileInputs.cache
+E:\Project_Unity\ILRuntimeTest\Assets\ThirdPartTools\ILRuntime\2.1.0\Demo\HotFix_Project~\obj\Debug\HotFix_Project.dll
+E:\Project_Unity\ILRuntimeTest\Assets\ThirdPartTools\ILRuntime\2.1.0\Demo\HotFix_Project~\obj\Debug\HotFix_Project.pdb
+E:\Project_Unity\ILRuntimeTest\HotFix_Project\obj\Debug\HotFix_Project.csproj.AssemblyReference.cache
+E:\Project_Unity\ILRuntimeTest\HotFix_Project\obj\Debug\HotFix_Project.csproj.CoreCompileInputs.cache
+E:\Project_Unity\ILRuntimeTest\HotFix_Project\obj\Debug\HotFix_Project.dll
+E:\Project_Unity\ILRuntimeTest\HotFix_Project\obj\Debug\HotFix_Project.pdb
+E:\Project_Unity\GameFramework\Assets\StreamingAssets\HotFix_Project.dll
+E:\Project_Unity\GameFramework\Assets\StreamingAssets\HotFix_Project.pdb
+E:\Project_Unity\GameFramework\HotFix_Project\obj\Debug\HotFix_Project.csproj.AssemblyReference.cache
+E:\Project_Unity\GameFramework\HotFix_Project\obj\Debug\HotFix_Project.csproj.CoreCompileInputs.cache
+E:\Project_Unity\GameFramework\HotFix_Project\obj\Debug\HotFix_Project.dll
+E:\Project_Unity\GameFramework\HotFix_Project\obj\Debug\HotFix_Project.pdb
