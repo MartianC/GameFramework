@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using GameCore;
 using UnityEngine;
-using xasset;
 
 public class GameRoot : TMonoSingleton<GameRoot>
 {
@@ -12,10 +11,9 @@ public class GameRoot : TMonoSingleton<GameRoot>
         gameObject.AddComponent<GameLogicManager>();
         GameManager.Instance.Startup();
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public override void Awake()
     {
-        
+        Instance = this;
     }
 }

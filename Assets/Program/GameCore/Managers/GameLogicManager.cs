@@ -17,6 +17,11 @@ namespace GameCore
 
         public GameHotUpdateManager GameHotUpdateManager { get => _gameHotUpdateManager; }
 
+        public override void Awake()
+        {
+            Instance = this;
+        }
+
         public void Init()
         {
             if (_isHotUp)
