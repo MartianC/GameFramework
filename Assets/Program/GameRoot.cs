@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class GameRoot : TMonoSingleton<GameRoot>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameObject.AddComponent<GameLogicManager>();
-        GameManager.Instance.Startup();
-    }
-    
     public override void Awake()
     {
         Instance = this;
+        gameObject.AddComponent<GameLogicManager>();
+    }
+    
+    public void StartGame()
+    {
+        GameManager.Instance.Startup();
     }
 }

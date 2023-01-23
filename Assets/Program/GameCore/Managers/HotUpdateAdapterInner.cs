@@ -50,12 +50,8 @@ namespace GameCore
         /// </summary>
         public void InitGameLogic()
         {
-            // IMethod method = mType.GetMethod("InitGameLogic", 0);
-            // mAppdomain.Invoke(method, mInstance, null);
-            
-            //HelloWorld，第一次方法调用
-            mAppdomain.Invoke("HotFix_Project.InstanceClass", "StaticFunTest", null, null);
-
+            IMethod method = mType.GetMethod("InitGameLogic", 0);
+            mAppdomain.Invoke(method, mInstance, null);
         }
 
         /// <summary>

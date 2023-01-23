@@ -1,0 +1,8 @@
+E:\Project_Unity\GameFramework\Assets\StreamingAssets\HotUpdateScripts.dll
+E:\Project_Unity\GameFramework\Assets\StreamingAssets\HotUpdateScripts.pdb
+E:\Project_Unity\GameFramework\HotUpdateScripts\HotUpdateScripts\obj\Debug\HotUpdateScripts.csproj.AssemblyReference.cache
+E:\Project_Unity\GameFramework\HotUpdateScripts\HotUpdateScripts\obj\Debug\HotUpdateScripts.csproj.CoreCompileInputs.cache
+E:\Project_Unity\GameFramework\HotUpdateScripts\HotUpdateScripts\obj\Debug\HotUpdateScripts.dll
+E:\Project_Unity\GameFramework\HotUpdateScripts\HotUpdateScripts\obj\Debug\HotUpdateScripts.pdb
+E:\Project_Unity\GameFramework\Assets\HotUpdateResources\Dll\Hidden~\HotUpdateScripts.dll
+E:\Project_Unity\GameFramework\Assets\HotUpdateResources\Dll\Hidden~\HotUpdateScripts.pdb

@@ -42,6 +42,8 @@ namespace Platform
         public override void Awake()
         {
             Instance = this;
+
+            UICamera = GetComponentInChildren<Camera>();
             
             #region 自动处理补全各个指定的固定挂点
 

@@ -290,7 +290,7 @@ namespace libx
                     { bundle = bundle2Ids[item.bundle], dir = index, name = Path.GetFileName(path) };
                     assets.Add(asset);
                 }
-                catch (KeyNotFoundException)
+                catch (KeyNotFoundException e)
                 {
                     Debug.LogError($"{Path.GetFileName(path)}资源无法打进AB包");
                 }
