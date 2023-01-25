@@ -2,6 +2,7 @@
 using ILRuntime.CLR.Method;
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.Runtime.Enviorment;
+using UnityEditor;
 
 namespace GameCore
 {
@@ -35,16 +36,19 @@ namespace GameCore
         //     var flag = (bool)obj;
         //     return flag;
         // }
-        // public bool ProcessWebsocketMessage(short msgId, BaseResponse message)
-        // {
-        //     List<IType> paramList = new List<IType>();
-        //     paramList.Add(mAppdomain.GetType(typeof(int)));
-        //     paramList.Add(mAppdomain.GetType(typeof(BaseVo)));
-        //     IMethod method = mType.GetMethod("ProcessWebsocketMessage", paramList, null);
-        //     object obj = mAppdomain.Invoke(method, mInstance, msgId, message);
-        //     var flag = (bool)obj;
-        //     return flag;
-        // }
+
+        public bool ProcessWebsocketMessage(string message)
+        {
+            List<IType> paramList = new List<IType>();
+            paramList.Add(mAppdomain.GetType(typeof(string)));
+            IMethod method = mType.GetMethod("ProcessWebsocketMessage", paramList, null);
+            object obj = mAppdomain.Invoke(method, mInstance, message);
+            var flag = (bool)obj;
+            return flag;
+        }
+
+        
+        
         /// <summary>
         /// 开启游戏逻辑
         /// </summary>
@@ -145,5 +149,6 @@ namespace GameCore
             IMethod method = mType.GetMethod("SwitchLanguage", 0);
             mAppdomain.Invoke(method, mInstance, null);
         }
+
     }
 }

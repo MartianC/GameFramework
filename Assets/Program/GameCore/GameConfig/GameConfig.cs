@@ -7,7 +7,8 @@
         /// </summary>
         public static EDebugLevel DebugLevel = EDebugLevel.Dev;
 
-        
+        public static string ServerUrl = "ws://127.0.0.1:8088";
+
         public static bool GetDefineStatus(EDefineType type)
         {
             switch (type)

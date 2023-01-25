@@ -20,6 +20,24 @@ namespace libx
         void OnClear();
     }
 
+    public enum AssetLoadMode
+    {
+        /// <summary>
+        /// 开发模式(无需打包，编辑器下AssetDatabase加载)
+        /// </summary>
+        Develop = 0,
+        
+        /// <summary>
+        /// 本地调试模式(需要打包，直接加载最新Bundle，不走热更逻辑)
+        /// </summary>
+        Local = 1,
+        
+        /// <summary>
+        /// 发布模式(需要打包，走版本对比更新流程)
+        /// </summary>
+        Build = 2,
+    }
+    
     [RequireComponent(typeof(Downloader))]
     [RequireComponent(typeof(NetworkMonitor))]
     public class Updater : MonoBehaviour, IUpdater, INetworkMonitorListener
@@ -76,10 +94,10 @@ namespace libx
 
         private void Start()
         {
-#if !UNITY_EDITOR
-            StartCoroutine(LocalCompareRes());
-            return;
-#endif
+// #if !UNITY_EDITOR
+//             StartCoroutine(LocalCompareRes());
+//             return;
+// #endif
             _downloader = gameObject.GetComponent<Downloader>();
             _downloader.onUpdate = OnUpdate;
             _downloader.onFinished = OnComplete;
