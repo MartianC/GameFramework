@@ -42,6 +42,7 @@ namespace Platform
         public override void Awake()
         {
             Instance = this;
+            gameObject.AddComponent<UIManager>();
 
             UICamera = GetComponentInChildren<Camera>();
             

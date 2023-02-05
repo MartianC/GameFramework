@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using HotLogic;
+using libx;
 using UnityEngine;
 
 namespace GameCore
@@ -16,10 +17,10 @@ namespace GameCore
 
         public void Init()
         {
-            if (Assets.HasFile("HotUpdateScripts.dll.bytes", ABResources.MatchMode.Dll))
-            {
-                _isHotUp = true;
-            }
+            // if (Assets.HasFile("HotUpdateScripts.dll.bytes", ABResources.MatchMode.Dll))
+            // {
+            //     _isHotUp = true;
+            // }
             
             if (_isHotUp)
             {
@@ -58,6 +59,66 @@ namespace GameCore
                 return GameHotUpdateLogicManager.Instance.ProcessWebsocketMessage(message);
             }
         }
+        
+        
+        public void RegistModule(string moduleName,object obj = null)
+        {
+            if (_isHotUp)
+            {
+                GameHotUpdateManager.Instance.HotUpdateAdapter.RegistModule(moduleName,obj);
+            }
+            else
+            {
+                GameHotUpdateLogicManager.Instance.RegistModule(moduleName,obj);
+            }
+        }
+        /// <summary>
+        /// 获取模块
+        /// </summary>
+        /// <param name="moduleName"></param>
+        /// <returns></returns>
+        public BaseModule GetBaseModule(string moduleName)
+        {
+            if (_isHotUp)
+            {
+                return (BaseModule)  GameHotUpdateManager.Instance.HotUpdateAdapter.GetBaseModule(moduleName);
+            }
+            else
+            {
+                return   GameHotUpdateLogicManager.Instance.GetBaseModule(moduleName);
+            }
+      
+        }
+        /// <summary>
+        /// 移除所有UI功能模块
+        /// </summary>
+        public void RemoveAllModule()
+        {
+            if (_isHotUp)
+            {
+                GameHotUpdateManager.Instance.HotUpdateAdapter.RemoveAllModule();
+            }
+            else
+            {
+                GameHotUpdateLogicManager.Instance.RemoveAllModule();
+            }
+        }
+        /// <summary>
+        /// 移除UI功能模块
+        /// </summary>
+        /// <param name="moduleName"></param>
+        public void RemoveModule(string moduleName)
+        {
+            if (_isHotUp)
+            {
+                GameHotUpdateManager.Instance.HotUpdateAdapter.RemoveModule(moduleName);
+            }
+            else
+            {
+                GameHotUpdateLogicManager.Instance.RemoveModule(moduleName);
+            }
+        }
+
         
     }
     

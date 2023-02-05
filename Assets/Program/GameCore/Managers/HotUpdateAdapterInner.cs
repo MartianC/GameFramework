@@ -62,7 +62,7 @@ namespace GameCore
         /// 注册模块
         /// </summary>
         /// <param name="moduleName"></param>
-        public void RegistModule(string moduleName, object obj, string id)
+        public void RegistModule(string moduleName, object obj)
         {
             List<IType> paramList = new List<IType>();
             paramList.Add(mAppdomain.GetType(typeof(string)));

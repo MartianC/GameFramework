@@ -18,8 +18,9 @@ namespace HotLogic
                     if (message.Success())
                     {
                         //解析消息
-                        //var playerInfo = SerializeManager.DeSerialize<PlayerInfo>(message.Data);
-                        //Messenger<PlayerInfo>.Broadcast(MessengerEventDef.Event_LoginGame, playerInfo);
+                        // var playerInfo = SerializeManager.DeSerialize<PlayerInfo>(message.Data);
+                        // Messenger<PlayerInfo>.Broadcast(MessengerEventDef.Event_LoginGame, playerInfo);
+                        GameDebug.Log(message.Msg);
                         Messenger.Broadcast(MessengerEventDef.Event_LoginGame);
                     }
                     else
