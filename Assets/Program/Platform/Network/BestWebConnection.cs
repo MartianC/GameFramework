@@ -41,7 +41,7 @@ namespace Platform
 
         void Reconnect()
         {
-            websocket = new WebSocket(new System.Uri(GameConfig.ServerUrl));
+            websocket = new WebSocket(new System.Uri(GameConfig.WebSocketUrl));
             websocket.OnOpen = OnOpen;
             websocket.OnMessage = OnMessageRecieve;
             websocket.OnBinary = OnBinaryRecieve;

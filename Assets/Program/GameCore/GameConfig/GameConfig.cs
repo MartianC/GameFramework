@@ -7,7 +7,10 @@
         /// </summary>
         public static EDebugLevel DebugLevel = EDebugLevel.Dev;
 
-        public static string ServerUrl = "ws://127.0.0.1:4200";
+        public static string WebSocketUrl = "ws://127.0.0.1:4200";
+        
+        public static string TcpServerUrl = "127.0.0.1";
+        public static int TcpServerPort = 4300;
 
         public static bool GetDefineStatus(EDefineType type)
         {
