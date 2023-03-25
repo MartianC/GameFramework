@@ -10,7 +10,8 @@ public class GameRoot : TMonoSingleton<GameRoot>
     {
         Instance = this;
         gameObject.AddComponent<GameLogicManager>();
-        gameObject.AddComponent<BestWebConnection>();
+        //gameObject.AddComponent<BestWebConnection>();
+        gameObject.AddComponent<TcpNetManager>();
     }
     
     public void StartGame()

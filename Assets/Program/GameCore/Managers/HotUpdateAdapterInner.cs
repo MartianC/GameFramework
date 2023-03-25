@@ -2,6 +2,7 @@
 using ILRuntime.CLR.Method;
 using ILRuntime.CLR.TypeSystem;
 using ILRuntime.Runtime.Enviorment;
+using Platform;
 using UnityEditor;
 
 namespace GameCore
@@ -42,6 +43,16 @@ namespace GameCore
             List<IType> paramList = new List<IType>();
             paramList.Add(mAppdomain.GetType(typeof(string)));
             IMethod method = mType.GetMethod("ProcessWebsocketMessage", paramList, null);
+            object obj = mAppdomain.Invoke(method, mInstance, message);
+            var flag = (bool)obj;
+            return flag;
+        }
+        
+        public bool ProcessTcpMessage(TcpMessage message)
+        {
+            List<IType> paramList = new List<IType>();
+            paramList.Add(mAppdomain.GetType(typeof(TcpMessage)));
+            IMethod method = mType.GetMethod("ProcessTcpMessage", paramList, null);
             object obj = mAppdomain.Invoke(method, mInstance, message);
             var flag = (bool)obj;
             return flag;

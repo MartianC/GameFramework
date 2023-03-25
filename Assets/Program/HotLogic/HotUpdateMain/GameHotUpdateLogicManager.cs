@@ -22,6 +22,12 @@ namespace HotLogic
             return MessageDispatchManager.Instance.ProcessWebsocketMessage(bVo.msgId, bData);
         }
         
+        public bool ProcessTcpMessage(TcpMessage message)
+        {
+            return MessageDispatchManager.Instance.ProcessTCPmessage(message);
+            
+        }
+
         /// <summary>
         /// 移除所有UI功能模块
         /// </summary>
@@ -58,6 +64,5 @@ namespace HotLogic
         {
             moduleManager.RegistModule(moduleName, obj);
         }
-
     }
 }

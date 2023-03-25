@@ -9,10 +9,10 @@
         }
         public string ProviderName { get => providerName;}
 
-        // public virtual bool ProcessTCPmessage(int msgId, Platform.TcpMessage message)
-        // {
-        //     return false;
-        // }
+        public virtual bool ProcessTcpMessage(Platform.TcpMessage message)
+        {
+            return false;
+        }
         public virtual bool ProcessWebsocketMessage(short msgId, BaseResponse message)
         {
             return false;

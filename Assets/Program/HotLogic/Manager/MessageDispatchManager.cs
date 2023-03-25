@@ -107,23 +107,23 @@ namespace HotLogic
         /// <param name="msgId"></param>
         /// <param name="message"></param>
         /// <returns></returns>
-        // public bool ProcessTCPmessage(int msgId, Platform.NetWork.TcpMessage message)
-        // {
-        //     if (_messageRegistDic.ContainsKey(msgId))
-        //     {
-        //         return _messageRegistDic[msgId].ProcessTCPmessage(msgId, message);
-        //     }
-        //     else
-        //     {
-        //         return false;
-        //     }
-        // }
-
         public bool ProcessWebsocketMessage(short msgId, BaseResponse message)
         {
             if (_messageRegistDic.ContainsKey(msgId))
             {
                 return _messageRegistDic[msgId].ProcessWebsocketMessage(msgId, message);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ProcessTCPmessage(TcpMessage message)
+        {
+            if (_messageRegistDic.ContainsKey(message.MsgId))
+            {
+                return _messageRegistDic[message.MsgId].ProcessTcpMessage(message);
             }
             else
             {

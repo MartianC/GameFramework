@@ -33,5 +33,10 @@ namespace HotLogic
             
             return base.ProcessWebsocketMessage(msgId, message);
         }
+
+        public override bool ProcessTcpMessage(TcpMessage message)
+        {
+            return base.ProcessTcpMessage(message);
+        }
     }
 }

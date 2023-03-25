@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using HotLogic;
 using libx;
+using Platform;
 using UnityEngine;
 
 namespace GameCore
@@ -57,6 +58,18 @@ namespace GameCore
             else
             {
                 return GameHotUpdateLogicManager.Instance.ProcessWebsocketMessage(message);
+            }
+        }
+        
+        public bool ProcessTcpMessage(TcpMessage message)
+        {
+            if (_isHotUp)
+            {
+                return GameHotUpdateManager.Instance.HotUpdateAdapter.ProcessTcpMessage(message);
+            }
+            else
+            {
+                return GameHotUpdateLogicManager.Instance.ProcessTcpMessage(message);
             }
         }
         
