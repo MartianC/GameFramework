@@ -1,0 +1,48 @@
+﻿using System.Collections.Generic;
+
+namespace HotLogic
+{
+    public class #DATANAME#DataAll : BaseGameDataAll
+    {
+        public Dictionary<int, #DATANAME#Data> Data;
+        public static string DataPath = "#DATANAME#.txt";
+        
+        public override void Init()
+        {
+	        Data = new Dictionary<int, #DATANAME#Data>();
+	        ABResources.LoadResAsync<TextAsset>(DataPath, (a, request) =>
+	        {
+		        this.LoadData(a.text);
+		        request.Release();
+	        }, ABResources.MatchMode.TextAsset);
+        }
+
+        private void LoadData(string dataStr)
+		{
+	        string[] datas = dataStr.Split('\r');
+	        for (int i = 5; i < datas.Length; i++)
+	        {//数据从第五行开始
+		        try
+		        {
+			        var item = new #DATANAME#Data(datas[i]);
+			        Data[item.Id] = item;
+		        }
+		        catch (Exception e)
+		        {
+			        GameDebug.Log("#DATANAME#Data 初始化错误 at line:" + i);
+		        }
+	        }
+		}
+          
+    }
+    public class #DATANAME#Data
+    {
+#MEMBERS#
+
+		public #DATANAME#Data(string data)
+		{
+			var split = data.Split('\t');
+#MEMBERSINIT#
+		}
+    }
+}
