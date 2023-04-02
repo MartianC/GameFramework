@@ -4,7 +4,7 @@
     {
         //AUTOGEN_BEGIN
 
-		//AUTOGEN_END
+		WeaponInfo,		//AUTOGEN_END
     }
     
     

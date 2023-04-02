@@ -72,6 +72,12 @@ namespace HotLogic
         void OnBtnLogin()
         {
             MessageManager.SendMessage_Login();
+
+            var weaponDataAll = GameDataManager.Instance.GetGameData(GameDataType.WeaponInfo) as WeaponInfoDataAll;
+            foreach (var item in weaponDataAll.Data)
+            {
+                GameDebug.Log($"ID:{item.Key} Name:{item.Value.Name} Attack:{item.Value.Attack} Defense:{item.Value.Defense}");
+            }
         }
 
         #endregion

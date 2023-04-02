@@ -11,6 +11,7 @@ namespace HotLogic
         /// </summary>
         public void InitGameLogic()
         {
+            GameDataManager.Instance.Init();
             RegistModule(ModuleConfig.MODULE_GAME_LOGIN, null);
         }
 
