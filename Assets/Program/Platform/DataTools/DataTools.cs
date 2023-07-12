@@ -54,7 +54,7 @@ namespace Platform
         private static void GenerateGameDataScript()
         {
             string scriptTemplate = File.ReadAllText(DataToolConfig.SCRIPT_TEMPLATE_PATH);
-            scriptTemplate = scriptTemplate.Replace("#DATANAME#", _dataName);
+            scriptTemplate = scriptTemplate.Replace(DataToolConfig.REPLACE_DATANAME, _dataName);
             StringBuilder memberBuilder = new StringBuilder();
             StringBuilder memberInitBuilder = new StringBuilder();
             for (int i = 0; i < _members.Length; i++)
@@ -68,8 +68,8 @@ namespace Platform
                 AddMemberDefine(memberBuilder, i);
                 AddMemberInit(memberInitBuilder, i);
             }
-            scriptTemplate = scriptTemplate.Replace("#MEMBERS#", memberBuilder.ToString());
-            scriptTemplate = scriptTemplate.Replace("#MEMBERSINIT#", memberInitBuilder.ToString());
+            scriptTemplate = scriptTemplate.Replace(DataToolConfig.REPLACE_MEMBERS, memberBuilder.ToString());
+            scriptTemplate = scriptTemplate.Replace(DataToolConfig.REPLACE_MEMBERSINIT, memberInitBuilder.ToString());
             
             try{
                 string scriptPath = DataToolConfig.SCRIPT_PATH + _dataName + "Data.cs";
