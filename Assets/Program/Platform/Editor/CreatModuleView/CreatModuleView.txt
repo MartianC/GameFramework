@@ -1,0 +1,34 @@
+﻿using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine;
+
+namespace HotLogic
+{
+    public class #NAME# : BaseView
+    {        
+        #region Key
+        
+#KEY#
+
+        #endregion
+
+        #region Component
+        
+#COMPONENT#
+
+        #endregion
+        
+        public List<FMCommonText> LanguageList;
+        
+        public override void GetObjects(UIAbstractViewObject mScript)
+        {
+            base.GetObjects(mScript);
+            var objName = new HashSet<string>
+            {
+#KEYSET#
+            };
+            _ObjectDict = mScript.FindGameObject(objName, out LanguageList);
+#FINDCOMPONENT#
+        }
+    }
+}
