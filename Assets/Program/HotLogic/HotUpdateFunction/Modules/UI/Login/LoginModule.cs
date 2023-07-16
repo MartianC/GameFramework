@@ -33,8 +33,8 @@ namespace HotLogic
 
         public override void EventBinding()
         {
-            _LoginModuleView._btnLogin.onClick.RemoveAllListeners();
-            _LoginModuleView._btnLogin.onClick.AddListener(OnBtnLogin);
+            // _LoginModuleView._btnLogin.onClick.RemoveAllListeners();
+            // _LoginModuleView._btnLogin.onClick.AddListener(OnBtnLogin);
         }
 
         public override void TweenCompleted()

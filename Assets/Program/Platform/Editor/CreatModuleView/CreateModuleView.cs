@@ -7,14 +7,14 @@ using UnityEngine;
 
 namespace Platform
 {
-    public class CreatModuleView : UnityEditor.Editor
+    public class CreateModuleView : UnityEditor.Editor
     {
         
         private static ViewInfo _currViewInfo;
 
 
-        [MenuItem("Assets/Creat/Creat ModuleView")]
-        public static void CreatView()
+        [MenuItem("Assets/Create/Create ModuleView", false, 20)]
+        public static void CreateView()
         {
             var objs = Selection.objects;
             foreach (var obj in objs)
@@ -24,18 +24,19 @@ namespace Platform
                     continue;
                 }
                 var path = AssetDatabase.GetAssetPath(obj);
-                if (!path.StartsWith(CreateModuleViewConfig.PrefabStart))
+                if (!path.StartsWith(CreateModuleViewConfig.ProcessingDirectory))
                 {
                     continue;
                 }
-                path = path.Replace(obj.name, String.Empty);
-                var content = CreatContent((obj as GameObject).transform);
-                CreatScript(path, content);
+                path = path.Replace(obj.name + ".prefab", String.Empty);
+                var content = CreateContent((obj as GameObject).transform);
+                CreateScript(path, content);
             }
+            AssetDatabase.Refresh();
         }
 
 
-        private static string CreatContent(Transform prefab)
+        private static string CreateContent(Transform prefab)
         {
             var result = GetTempScriptContent();
             _currViewInfo = new ViewInfo(GetModuleViewName(prefab.name));
@@ -49,29 +50,34 @@ namespace Platform
                 _currViewInfo.Components.Add(child.name);
             }
             
-            result = result.Replace("#SCRIPTNAME#", _currViewInfo.Name);
+            result = result.Replace("#SCRIPTNAME#", _currViewInfo.Name + "ModuleView");
             result = result.Replace("#KEY#", GetKey());
             result = result.Replace("#COMPONENT#", GetComponents());
-            result = result.Replace("KEYSET", GetKetSet());
+            result = result.Replace("#KEYSET#", GetKetSet());
             result = result.Replace("#FINDCOMPONENT#", GetFindComponent());
 
             return result;
         }
 
 
-        private static void CreatScript(string prefabPath, string content)
+        private static void CreateScript(string prefabPath, string content)
         {
-            var filePath = CreateModuleViewConfig.ModuleScriptDirectory + prefabPath.Replace(CreateModuleViewConfig.ProcessingDirectory, String.Empty);
+            var filePath = Application.dataPath 
+                           + CreateModuleViewConfig.ModuleScriptDirectory 
+                           + prefabPath.Replace(CreateModuleViewConfig.ProcessingDirectory, String.Empty)
+                           + $"{_currViewInfo.Name}/";
             if (!Directory.Exists(filePath))
             {
                 Directory.CreateDirectory(filePath);
             }
             var fileName = _currViewInfo.Name + "ModuleView.cs";
+            filePath += fileName;
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
             }
-
+            File.Create(filePath).Dispose();
+            File.WriteAllText(filePath, content);
         }
 
         #region GetReplace
@@ -93,7 +99,7 @@ namespace Platform
             var sb = new StringBuilder();
             foreach (var component in _currViewInfo.Components)
             {
-                sb.Append($"        public {GetType(component)} {component.Replace("BI_", "C_")} {{ get; private set; }}\n");
+                sb.Append($"        public {GetType(component)} {component.Replace(CreateModuleViewConfig.ComponentStart, CreateModuleViewConfig.ComponentStartReplace)} {{ get; private set; }}\n");
             }
             return sb.ToString();
         }
@@ -113,7 +119,7 @@ namespace Platform
             var sb = new StringBuilder();
             foreach (var component in _currViewInfo.Components)
             {
-                sb.Append($"            {component.Replace("BI_", "C_")} = GetObject<{GetType(component)}>({component});\n");
+                sb.Append($"            {component.Replace(CreateModuleViewConfig.ComponentStart, CreateModuleViewConfig.ComponentStartReplace)} = GetObject<{GetType(component)}>({component});\n");
             }
             return sb.ToString();
         }

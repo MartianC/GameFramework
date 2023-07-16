@@ -7,25 +7,25 @@ namespace Platform
     {
         public const string PrefabStart = "MV_";
         public const string PrefabEnd = "_PF";
-        public const string ComponentStart = "NC_";
-        public const string ComponentStartReplace = "C";
+        public const string ComponentStart = "KC_";
+        public const string ComponentStartReplace = "C_";
 
         
         public const string ProcessingDirectory = "Assets/HotUpdateResources/Prefab";
-        public const string ModuleScriptDirectory = "Program/HotLogic/HotUpdateFunction/Modules";
+        public const string ModuleScriptDirectory = "/Program/HotLogic/HotUpdateFunction/Modules";
         public static readonly string TemplatePath = Application.dataPath + "/Program/Platform/Editor/CreatModuleView/CreateModuleView.cs.txt";
 
         
         public static Dictionary<string, string> ComponentDic = new Dictionary<string, string>()
         {
-            {"_TXT","Text" },
-            {"_IPF","InputField" },
-            {"_IMG","Image" },
-            {"_BTN","Button" },
-            {"_TOG","Toggle" },
-            {"_SLD","Slider"},
-            {"_TF","Transform" },
-            {"_RTF","RectTransform"},
+            {"TF","Transform" },
+            {"RTF","RectTransform"},
+            {"TXT","Text" },
+            {"IPF","InputField" },
+            {"IMG","Image" },
+            {"BTN","Button" },
+            {"TOG","Toggle" },
+            {"SLD","Slider"},
         };
 
     }
