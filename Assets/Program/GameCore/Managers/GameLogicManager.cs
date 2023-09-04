@@ -11,11 +11,6 @@ namespace GameCore
         //标记是否进行热更新
         private bool _isHotUp = false;
 
-        public override void Awake()
-        {
-            Instance = this;
-        }
-
         public void Init()
         {
             // if (Assets.HasFile("HotUpdateScripts.dll.bytes", ABResources.MatchMode.Dll))

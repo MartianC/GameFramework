@@ -2,6 +2,6 @@
 {
     public class UIPrefabPathDefine
     {
-        public const string LoginUI = "UI/LoginUI.prefab";      //登录 
+        public const string LoginUI = "UI/MV_Login_PF.prefab";      //登录 
     }
 }

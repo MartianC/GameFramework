@@ -22,7 +22,7 @@ namespace Platform
         /// <summary>
         /// 屏幕的分辨率
         /// </summary>
-        private Vector2 mResolution = new Vector2(1334, 750);
+        private Vector2 _mResolution = new Vector2(1334, 750);
 
         /// <summary>
         /// UI各固定挂点层级设置
@@ -39,11 +39,8 @@ namespace Platform
         /// </summary>
         public const int SpacingOrder = 10;
 
-        public override void Awake()
+        public void Awake()
         {
-            Instance = this;
-            gameObject.AddComponent<UIManager>();
-
             UICamera = GetComponentInChildren<Camera>();
             
             #region 自动处理补全各个指定的固定挂点
@@ -130,7 +127,7 @@ namespace Platform
             CanvasScaler scaler = GetComponent<CanvasScaler>();
             if (scaler != null)
             {
-                mResolution = scaler.referenceResolution;
+                _mResolution = scaler.referenceResolution;
             }
         }
     }

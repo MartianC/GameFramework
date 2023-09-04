@@ -33,11 +33,6 @@ namespace Platform
         
         public Queue<TcpMessage> MessageQueue = new Queue<TcpMessage>();
 
-        public override void Awake()
-        {
-            Instance = this;
-        }
-
         void Start()
         {
             this._state = ETcpState.Disconnect;

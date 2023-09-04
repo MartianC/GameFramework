@@ -30,8 +30,32 @@ public class TSingleton<T> where T : new()
 /// 继承自Mono的单例
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class TMonoSingleton<T> : MonoBehaviour
+public class TMonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public static T Instance;
-    public abstract void Awake();
+    private static readonly object _lock = new object();
+    
+    private static T _instance;
+    public static T Instance
+    {
+        get
+        {
+            lock (_lock)
+            {
+                if (_instance is null)
+                {
+                    _instance = (T)FindObjectOfType(typeof(T));
+                    if (_instance)
+                    {
+                        return _instance;
+                    }
+                    var go = new GameObject();
+                    _instance = go.AddComponent<T>();
+                    go.AddComponent<UnityDontDestroy>();
+                    go.name = $"[{typeof(T)}]";
+                }
+
+                return _instance;
+            }
+        }
+    }
 }

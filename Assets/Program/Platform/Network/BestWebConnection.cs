@@ -13,12 +13,7 @@ namespace Platform
         float mTickTime;
         bool mStartReconnect = false;
         bool connected = false;
-
-        public override void Awake()
-        {
-            Instance = this;
-        }
-
+        
         void Start()
         {
             Reconnect();

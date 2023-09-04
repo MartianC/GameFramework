@@ -55,11 +55,6 @@ public class UIManager : TMonoSingleton<UIManager>
     //private Stack<UIViewStruct> _stacks = new Stack<UIViewStruct>();
     private Dictionary<EUIState, Stack<UIViewStruct>> _stacksDic = new Dictionary<EUIState, Stack<UIViewStruct>>();
 
-    public override void Awake()
-    {
-        Instance = this;
-    }
-    
     /// <summary>
     /// 通用打开UI模块
     /// </summary>
@@ -174,6 +169,11 @@ public class UIManager : TMonoSingleton<UIManager>
             //获取UIPrefab的实例
             ABResources.LoadResAsync<GameObject>(path, (a, request) =>
             {
+                if (a is null)
+                {
+                    GameDebug.LogError($"UI Load Failed At: {path}");
+                    return;
+                }
                 Transform parent = GetParentTransform(state);
                 GameObject go = UITools.AddChild(parent, Instantiate(a));
                 request.Require(go);

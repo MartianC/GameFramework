@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseURL: http://47.100.26.186:8066/DLC/
-  gameScene: Login.unity
+  gameScene: Update.unity
   enableVFS: 0
   development: 1
 --- !u!114 &925170921

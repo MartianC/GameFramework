@@ -25,9 +25,8 @@ namespace Platform
             }
         }
 
-        public override void Awake()
+        public void Awake()
         {
-            Instance = this;
             _taskMap = new Dictionary<int, Task>();
             _removeingTasks = new List<Task>();
             _addingTasks = new List<Task>();

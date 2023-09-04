@@ -7,9 +7,8 @@ using UnityEngine;
 
 public class GameRoot : TMonoSingleton<GameRoot>
 {
-    public override void Awake()
+    public void Awake()
     {
-        Instance = this;
         gameObject.AddComponent<GameLogicManager>();
         gameObject.AddComponent<BestWebConnection>();
         //gameObject.AddComponent<TcpNetManager>();
