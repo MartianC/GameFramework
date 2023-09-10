@@ -1,5 +1,7 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using System.Collections.Generic;
+using libx;
 using UnityEngine;
 
 
@@ -287,17 +289,20 @@ namespace GameCore
         /// <param name="clip">音乐剪辑</param>
         /// <param name="isLoop">是否循环</param>
         /// <param name="speed">播放速度</param>
-        public void PlayBackgroundMusic(AudioClip clip, bool isLoop = true, float speed = 1)
+        public void PlayBackgroundMusic(string path, bool isLoop = true, float speed = 1)
         {
-            if (_backgroundAudio.isPlaying)
+            this.LoadClip(path, clip =>
             {
-                _backgroundAudio.Stop();
-            }
+                if (_backgroundAudio.isPlaying)
+                {
+                    _backgroundAudio.Stop();
+                }
 
-            _backgroundAudio.clip = clip;
-            _backgroundAudio.loop = isLoop;
-            _backgroundAudio.pitch = speed;
-            _backgroundAudio.Play();
+                _backgroundAudio.clip = clip;
+                _backgroundAudio.loop = isLoop;
+                _backgroundAudio.pitch = speed;
+                _backgroundAudio.Play();
+            });
         }
 
         /// <summary>
@@ -355,18 +360,21 @@ namespace GameCore
         /// <param name="clip">音乐剪辑</param>
         /// <param name="isLoop">是否循环</param>
         /// <param name="speed">播放速度</param>
-        public void PlaySingleSound(AudioClip clip, bool isLoop = false, float speed = 1)
+        public void PlaySingleSound(string path, bool isLoop = false, float speed = 1)
         {
-            if (_singleAudio.isPlaying)
+            this.LoadClip(path, clip =>
             {
-                _singleAudio.Stop();
-            }
+                if (_singleAudio.isPlaying)
+                {
+                    _singleAudio.Stop();
+                }
 
-            _singleAudio.clip = clip;
-            _singleAudio.loop = isLoop;
-            _singleAudio.pitch = speed;
-            _singleAudio.Play();
-            _singleSoundPlayDetector = true;
+                _singleAudio.clip = clip;
+                _singleAudio.loop = isLoop;
+                _singleAudio.pitch = speed;
+                _singleAudio.Play();
+                _singleSoundPlayDetector = true;
+            });
         }
 
         /// <summary>
@@ -424,13 +432,16 @@ namespace GameCore
         /// <param name="clip">音乐剪辑</param>
         /// <param name="isLoop">是否循环</param>
         /// <param name="speed">播放速度</param>
-        public void PlayMultipleSound(AudioClip clip, bool isLoop = false, float speed = 1)
+        public void PlayMultipleSound(string path, bool isLoop = false, float speed = 1)
         {
-            AudioSource audio = ExtractIdleMultipleAudioSource();
-            audio.clip = clip;
-            audio.loop = isLoop;
-            audio.pitch = speed;
-            audio.Play();
+            this.LoadClip(path, clip =>
+            {
+                AudioSource audio = ExtractIdleMultipleAudioSource();
+                audio.clip = clip;
+                audio.loop = isLoop;
+                audio.pitch = speed;
+                audio.Play();
+            });
         }
 
         /// <summary>
@@ -489,30 +500,33 @@ namespace GameCore
         /// <param name="clip">音乐剪辑</param>
         /// <param name="isLoop">是否循环</param>
         /// <param name="speed">播放速度</param>
-        public void PlayWorldSound(GameObject attachTarget, AudioClip clip, bool isLoop = false, float speed = 1)
+        public void PlayWorldSound(GameObject attachTarget, string clipPath, bool isLoop = false, float speed = 1)
         {
-            if (_worldAudios.ContainsKey(attachTarget))
+            this.LoadClip(clipPath, clip =>
             {
-                AudioSource audio = _worldAudios[attachTarget];
-                if (audio.isPlaying)
+                if (_worldAudios.ContainsKey(attachTarget))
                 {
-                    audio.Stop();
-                }
+                    AudioSource audio = _worldAudios[attachTarget];
+                    if (audio.isPlaying)
+                    {
+                        audio.Stop();
+                    }
 
-                audio.clip = clip;
-                audio.loop = isLoop;
-                audio.pitch = speed;
-                audio.Play();
-            }
-            else
-            {
-                AudioSource audio = AttachAudioSource(attachTarget, WorldPriority, WorldVolume, 1, 1);
-                _worldAudios.Add(attachTarget, audio);
-                audio.clip = clip;
-                audio.loop = isLoop;
-                audio.pitch = speed;
-                audio.Play();
-            }
+                    audio.clip = clip;
+                    audio.loop = isLoop;
+                    audio.pitch = speed;
+                    audio.Play();
+                }
+                else
+                {
+                    AudioSource audio = AttachAudioSource(attachTarget, WorldPriority, WorldVolume, 1, 1);
+                    _worldAudios.Add(attachTarget, audio);
+                    audio.clip = clip;
+                    audio.loop = isLoop;
+                    audio.pitch = speed;
+                    audio.Play();
+                }
+            });
         }
 
         /// <summary>
@@ -644,6 +658,19 @@ namespace GameCore
             AudioSource audio = CreateAudioSource("MultipleAudio", MultiplePriority, MultipleVolume, 1, 0);
             _multipleAudios.Add(audio);
             return audio;
+        }
+
+        private void LoadClip(string clipPath, Action<AudioClip> callback)
+        {
+            ABResources.LoadResAsync(clipPath, (AudioClip a, AssetRequest request) =>
+            {
+                if (a is null)
+                {
+                    return;
+                }
+                callback.Invoke(GameObject.Instantiate(a));
+                request.Release();
+            }, ABResources.MatchMode.Audio);
         }
     }
 }

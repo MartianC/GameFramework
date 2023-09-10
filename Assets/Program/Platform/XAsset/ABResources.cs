@@ -138,6 +138,8 @@ public class ABResources
                 return "Assets/HotUpdateResources/Dll/" + path;
             case MatchMode.UIAtlas:
                 return "Assets/HotUpdateResources/UIAtlas/" + path;
+            case MatchMode.Audio:
+                return "Assets/HotUpdateResources/Audio/" + path;
             default:
                 return path;
         }
@@ -160,5 +162,6 @@ public class ABResources
         Other = 9,
         Dll = 10,
         UIAtlas = 11,
+        Audio = 12,
     }
 }
