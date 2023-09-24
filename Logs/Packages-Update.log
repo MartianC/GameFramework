@@ -45,3 +45,12 @@ The following packages were added:
   com.unity.textmeshpro@3.0.6
   com.unity.timeline@1.4.8
   com.unity.ugui@1.0.0
+
+=== Sun Sep 24 11:27:51 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were 已更新:
+  com.unity.ide.rider 从版本 3.0.15 到 3.0.21
+  com.unity.ide.visualstudio 从版本 2.0.16 到 2.0.18

@@ -3,36 +3,56 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEditor;
+using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 
 namespace Platform
 {
-    public class CreateModuleView : UnityEditor.Editor
+    [InitializeOnLoad]
+    public class CreateModuleView : Editor
     {
         
         private static ViewInfo _currViewInfo;
 
+        static CreateModuleView()
+        {
+            //PrefabStage.prefabSaved += CreatViewAuto;
+            PrefabUtility.prefabInstanceUpdated += CreatViewAuto;
+        }
 
         [MenuItem("Assets/Create/Create ModuleView", false, 20)]
-        public static void CreateView()
+        public static void CreateViewMenu()
         {
-            var objs = Selection.objects;
-            foreach (var obj in objs)
+            var ids = Selection.assetGUIDs;
+            foreach (var id in ids)
             {
-                if (!(obj is GameObject) || !IsMatchPrefabName(obj.name))
-                {
-                    continue;
-                }
-                var path = AssetDatabase.GetAssetPath(obj);
-                if (!path.StartsWith(CreateModuleViewConfig.ProcessingDirectory))
-                {
-                    continue;
-                }
-                path = path.Replace(obj.name + ".prefab", String.Empty);
-                var content = CreateContent((obj as GameObject).transform);
-                CreateScript(path, content);
+                CreatView(AssetDatabase.GUIDToAssetPath(id));
             }
             AssetDatabase.Refresh();
+        }
+        
+        public static void CreatViewAuto(GameObject go)
+        {
+            //CreatView(PrefabStageUtility.GetCurrentPrefabStage().assetPath);
+            var assetPath = AssetDatabase.GetAssetPath(PrefabUtility.GetCorrespondingObjectFromSource(go));
+            CreatView(assetPath);
+            AssetDatabase.Refresh();
+        }
+
+        private static void CreatView(string assetPath)
+        {
+            if (!IsMatchPrefabPath(assetPath))
+            {
+                return;
+            }
+            GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+            if (go is null || !IsMatchPrefabName(go.name))
+            {
+                return;
+            }
+            var path = assetPath.Replace(go.name + ".prefab", String.Empty);
+            var content = CreateContent(go.transform);
+            CreateScript(path, content);
         }
 
 
@@ -134,6 +154,10 @@ namespace Platform
             return File.ReadAllText(CreateModuleViewConfig.TemplatePath);
         }
 
+        private static bool IsMatchPrefabPath(string assetPath)
+        {
+            return assetPath.StartsWith(CreateModuleViewConfig.ProcessingDirectory);
+        }
         private static bool IsMatchPrefabName(string name)
         {
             return name.StartsWith(CreateModuleViewConfig.PrefabStart) && name.EndsWith(CreateModuleViewConfig.PrefabEnd);
