@@ -54,3 +54,15 @@ Update Mode: updateDependencies
 The following packages were 已更新:
   com.unity.ide.rider 从版本 3.0.15 到 3.0.21
   com.unity.ide.visualstudio 从版本 2.0.16 到 2.0.18
+
+=== Sun Jan 28 21:30:19 2024
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were 已添加:
+  com.unity.ai.navigation@1.1.5
+The following packages were 已更新:
+  com.unity.ide.rider 从版本 3.0.21 到 3.0.25
+  com.unity.ide.visualstudio 从版本 2.0.18 到 2.0.21
+  com.unity.timeline 从版本 1.4.8 到 1.7.6

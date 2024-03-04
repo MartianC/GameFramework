@@ -33,8 +33,8 @@ namespace HotLogic
                 KC_Title_TXT,
                 KC_Login_BTN,
                 KC_Regist_BTN,
-
             };
+            _ObjectDict = mScript.FindGameObject(objName);
 
             C_Title_TXT = GetObject<Text>(KC_Title_TXT);
             C_Login_BTN = GetObject<Button>(KC_Login_BTN);

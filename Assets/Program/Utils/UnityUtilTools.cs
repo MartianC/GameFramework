@@ -20,7 +20,7 @@ namespace Utils
         /// <param name="root"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static Dictionary<string, GameObject> GetGameObjectName(GameObject root, List<string> names)
+        public static Dictionary<string, GameObject> GetGameObjectName(GameObject root, HashSet<string> names)
         {
             Dictionary<string, GameObject> dict = new Dictionary<string, GameObject>();
             if (names.Contains(root.name))

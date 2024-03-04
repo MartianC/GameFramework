@@ -45,7 +45,7 @@ namespace GameCore
         /// <param name="objNames"></param>
 
         /// <returns></returns>
-        public Dictionary<string, GameObject> FindGameObject(List<string> objNames)
+        public Dictionary<string, GameObject> FindGameObject(HashSet<string> objNames)
         {
             return Utils.UnityUtilTools.GetGameObjectName(gameObject, objNames);
         }

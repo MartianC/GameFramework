@@ -6,6 +6,7 @@ namespace HotLogic
     public class LoginModule: BaseModule
     {
         private LoginModuleView _LoginModuleView;
+        private LoginViewModule _loginViewModule;
         
         /// <summary>
         /// 构造函数里进行通用的操作
@@ -29,10 +30,12 @@ namespace HotLogic
 
         public override void RegistEvent()
         {
+            
         }
 
         public override void EventBinding()
         {
+            
             // _LoginModuleView._btnLogin.onClick.RemoveAllListeners();
             // _LoginModuleView._btnLogin.onClick.AddListener(OnBtnLogin);
         }
